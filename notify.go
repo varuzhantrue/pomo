@@ -7,15 +7,20 @@ import (
 )
 
 func notifyDone(sessionType string) {
-	// Terminal bell — works everywhere.
-	fmt.Print("\a")
+	title, message := notificationText(sessionType)
 
-	// Native macOS notification via osascript.
-	if runtime.GOOS == "darwin" {
-		title, message := notificationText(sessionType)
+	switch runtime.GOOS {
+	case "darwin":
 		script := fmt.Sprintf(`display notification %q with title %q`, message, title)
-		// Ignore errors — notification is best-effort.
 		_ = exec.Command("osascript", "-e", script).Run()
+	case "linux":
+		// notify-send is available on most desktop Linux distros (libnotify).
+		// Fall back to terminal bell if it's not installed.
+		if err := exec.Command("notify-send", title, message).Run(); err != nil {
+			fmt.Print("\a")
+		}
+	default:
+		fmt.Print("\a")
 	}
 }
 

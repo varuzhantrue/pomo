@@ -9,7 +9,7 @@ A minimal Pomodoro timer for your terminal. No dependencies, no configuration, j
 - Live progress bar with color-coded countdown
 - Saves session history locally — tracks total focus time per day
 - Prompts to save partial sessions on Ctrl+C
-- Native macOS notifications on session completion (terminal bell on all platforms)
+- Desktop notifications on completion (macOS via osascript, Linux via notify-send, terminal bell fallback)
 
 ## Install
 
