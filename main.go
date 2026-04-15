@@ -33,6 +33,24 @@ func main() {
 	case "status":
 		showStatus()
 
+	case "mute":
+		cfg := loadConfig()
+		cfg.Muted = true
+		if err := saveConfig(cfg); err != nil {
+			fmt.Fprintf(os.Stderr, "Failed to save config: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("Sound muted. Run `pomo unmute` to turn it back on.")
+
+	case "unmute":
+		cfg := loadConfig()
+		cfg.Muted = false
+		if err := saveConfig(cfg); err != nil {
+			fmt.Fprintf(os.Stderr, "Failed to save config: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Println("Sound unmuted.")
+
 	default:
 		fmt.Fprintf(os.Stderr, "Unknown command: %q\n\n", os.Args[1])
 		printUsage()
@@ -68,5 +86,7 @@ Usage:
   pomo break     5-minute short break
   pomo long     15-minute long break
   pomo status   show today's sessions and focus time
+  pomo mute     silence notification sounds
+  pomo unmute   re-enable notification sounds
 `)
 }

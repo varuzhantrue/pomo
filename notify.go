@@ -31,9 +31,10 @@ func notifyDone(sessionType string) {
 	}
 }
 
-// playSound writes the embedded sound to a temp file and plays it with the
-// given player binary. Best-effort: errors are silently ignored.
 func playSound(player string) {
+	if loadConfig().Muted {
+		return
+	}
 	if _, err := exec.LookPath(player); err != nil {
 		return // player not installed
 	}
