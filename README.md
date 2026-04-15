@@ -9,7 +9,8 @@ A minimal Pomodoro timer for your terminal. No dependencies, no configuration, j
 - Live progress bar with color-coded countdown
 - Saves session history locally — tracks total focus time per day
 - Prompts to save partial sessions on Ctrl+C
-- Desktop notifications on completion (macOS via osascript, Linux via notify-send, terminal bell fallback)
+- Desktop notifications with sound on completion (macOS via osascript, Linux via notify-send, terminal bell fallback)
+- Mute/unmute notification sound without affecting visual notifications
 
 ## Install
 
@@ -40,6 +41,8 @@ pomo start    # start a 25-minute focus session
 pomo break    #  5-minute short break
 pomo long     # 15-minute long break
 pomo status   # show today's sessions and total focus time
+pomo mute     # silence notification sounds
+pomo unmute   # re-enable notification sounds
 ```
 
 **During a session**, press `Ctrl+C` to interrupt. You'll be asked whether to save the partial session.
@@ -56,6 +59,8 @@ Today: 🍅🍅🍅  (3 sessions = 1h 15m focused)
 ## Data
 
 Sessions are stored in `~/.pomo/sessions.json`. Each entry records the session type, start time, duration, and whether it was partial. The `status` command and session numbering are derived from this file.
+
+Mute preference is stored in `~/.pomo/config.json` and persists across sessions.
 
 ## License
 
