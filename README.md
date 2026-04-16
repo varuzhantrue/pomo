@@ -14,18 +14,31 @@ A minimal Pomodoro timer for your terminal. No dependencies, no configuration, j
 
 ## Install
 
-**Prerequisites:** Go 1.21 or later.
+**Option 1 — Download a pre-built binary (no Go required)**
+
+Grab the latest binary for your platform from the [Releases page](https://github.com/varuzhantrue/pomo/releases):
+
+| Platform | File |
+|---|---|
+| Linux x86_64 | `pomo-linux-amd64` |
+| macOS Apple Silicon | `pomo-macos-arm64` |
+| macOS Intel | `pomo-macos-amd64` |
+| Windows x86_64 | `pomo-windows-amd64.exe` |
+
+Then make it executable and move it to your `$PATH`:
+
+```bash
+chmod +x pomo-linux-amd64
+sudo mv pomo-linux-amd64 /usr/local/bin/pomo
+```
+
+**Option 2 — Build from source (requires Go 1.21+)**
 
 ```bash
 git clone https://github.com/varuzhantrue/pomo.git
 cd pomo
 go build -o pomo .
-```
-
-Then move the binary somewhere on your `$PATH`:
-
-```bash
-mv pomo /usr/local/bin/
+sudo mv pomo /usr/local/bin/
 ```
 
 Or install directly with `go install`:
