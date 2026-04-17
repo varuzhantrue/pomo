@@ -49,7 +49,6 @@ func loadSessions() ([]Session, error) {
 func saveSession(s Session) error {
 	sessions, err := loadSessions()
 	if err != nil {
-		// Don't lose data on a read error — start fresh.
 		sessions = nil
 	}
 	sessions = append(sessions, s)
